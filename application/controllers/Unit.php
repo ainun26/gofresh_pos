@@ -1,13 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class unit extends CI_Controller {
+class Unit extends CI_Controller {
 
     function __construct()
 	{
 		parent ::__construct();
 		check_not_login();
-		check_admin();
 		$this->load->model('unit_m');
     }
     

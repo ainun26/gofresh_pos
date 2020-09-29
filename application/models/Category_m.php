@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class category_m extends CI_Model{
+class Category_m extends CI_Model{
 
     public function get($id = null)
     {

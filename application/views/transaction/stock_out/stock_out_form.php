@@ -1,12 +1,12 @@
 <section class="content-header">
       <h1>
-        Stock In
-        <small>Barang Masuk / Pembelian</small>
+        Stock Out
+        <small>Barang Keluar</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
         <li>Transaction</li>
-        <li class="active">Stock In</li>
+        <li class="active">Stock Out</li>
       </ol>
 </section>
 
@@ -14,9 +14,9 @@
 <section class="content">
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Add Stock In</h3>
+            <h3 class="box-title">Add Stock Out</h3>
             <div class="pull-right" >
-                <a href="<?= site_url('stock/in') ?>" class="btn btn-warning btn-flat">
+                <a href="<?= site_url('stock/out') ?>" class="btn btn-warning btn-flat">
                     <i class="fa fa-reply-all"></i> Back
                 </a>
             </div>
@@ -62,16 +62,7 @@
                         </div>
                         <div class="form-group">
                             <label>Detail *</label>
-                            <input type="text" class="form-control" name="detail" placeholder="Kulakan / Tambahan / etc" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Supplier</label>
-                            <select name="supplier" class="form-control" required>
-                                <option>-- Pilih Supplier --</option>
-                                <?php foreach($supplier as $key =>$data) {
-                                  echo '<option value="'.$data->supplier_id.'">'.$data->name.'</option>';
-                                } ?>
-                            </select>
+                            <input type="text" class="form-control" name="detail" placeholder="Habis / Kadaluarsa / dll" required>
                         </div>
                         <div class="form-group">
                             <label>Qty *</label>
@@ -80,7 +71,7 @@
                     <!-- /.box-body -->
 
                         <div class="form-group">
-                            <button type="submit" name="in_add" class="btn btn-primary btn-flat">
+                            <button type="submit" name="out_add" class="btn btn-primary btn-flat">
                             <i class="fa fa-paper-plane"></i> Save</button>
                             <button type="reset" class="btn btn-danger btn-flat"><i class="fa fa-undo"></i> Reset</button>
                         </div>

@@ -7,4 +7,8 @@ class Dashboard extends CI_Controller {
 		check_not_login();
 		$this->template->load('template', 'dashboard');
 	}
+
+	public function get() {
+		
+	}
 }

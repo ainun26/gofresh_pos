@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class item_m extends CI_Model{
+class Item_m extends CI_Model{
 
     // start datatables
     var $column_order = array(null, 'barcode', 'p_item.name', 'category_name', 'unit_name', 'price', 'stock'); //set column field database for datatable orderable
@@ -127,5 +127,27 @@ class item_m extends CI_Model{
         $this->db->where('item_id', $id);
         $this->db->delete('p_item');
     }
+
+    public function update_stock_in($data) {
+        $qty = $data['qty'];
+        $id = $data['item_id'];
+        $sql = "UPDATE p_item SET stock = stock + '$qty' WHERE item_id= '$id' ";
+        $this->db->query($sql);
+    }
+
+    public function update_stock_out($data) {
+        $qty = $data['qty'];
+        $id = $data['item_id'];
+        $sql = "UPDATE p_item SET stock = stock - '$qty' WHERE item_id= '$id' ";
+        $this->db->query($sql);
+    }
+
+    public function check_stock($qty, $id = null) {
+        $this->db->from('p_item');
+        $this->db->where('stock', $qty);
+        $query = $this->db->get();
+        return $query;
+    }
+
 
 }

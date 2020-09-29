@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class customer extends CI_Controller {
+class Customer extends CI_Controller {
 
     function __construct()
 	{
@@ -81,4 +81,5 @@ class customer extends CI_Controller {
 		window.location='".site_url('customer')."';
 		</script>";
     }
+
 }

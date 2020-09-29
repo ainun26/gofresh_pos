@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="icon" href="asset/dist/img/user1.jpeg" class="img-circle" alt="User Image">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>OvertimeRST </title>
+  <title>GO Fresh</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -28,10 +29,8 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
-<body class="hold-transition skin-red sidebar-mini">
+  </head>
+<body class="hold-transition skin-red sidebar-mini <?=$this->uri->segment(1) == 'sale' ? 'sidebar-collapse' : null ?> ">
 
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -39,9 +38,9 @@
     <!-- Logo -->
     <a href="<?=base_url('dashboard')?>" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>O</b>RST</span>
+      <span class="logo-mini"><b>GO</b><small>F</small></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Overtime</b>RST</span>
+      <span class="logo-lg"><b>GO</b><small>Fresh</small></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -58,13 +57,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?=base_url()?>asset/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="<?=base_url()?>asset/dist/img/user1.jpeg" class="user-image" alt="User Image">
               <span class="hidden-xs"><?= $this->fungsi->user_login()->username ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="<?=base_url()?>asset/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="<?=base_url()?>asset/dist/img/user1.jpeg" class="img-circle" alt="User Image">
 
                 <p>
                 <?= ucfirst($this->fungsi->user_login()->nama_user )?>
@@ -73,9 +72,6 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
                 <div class="pull-right">
                   <a href="<?=site_url('auth/logout')?>" class="btn btn-default btn-flat">Log out</a>
                 </div>
@@ -112,16 +108,20 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
+        <?php if($this->fungsi->user_login()->id_level == 1 ){ ?>
         <li <?=$this->uri->segment(1) == 'customer' ? 'class="active"' : ''?>>
           <a href="<?=site_url('customer')?>">
             <i class="fa fa-users"></i> <span>Customer</span>
           </a>
         </li>
+        <?php } ?>
+        <?php if($this->fungsi->user_login()->id_level == 1 ){ ?>
         <li <?=$this->uri->segment(1) == 'supplier' ? 'class="active"' : ''?>>
           <a href="<?=site_url('supplier')?>">
             <i class="fa fa-truck"></i> <span>Supplier</span>
           </a>
         </li>
+        <?php } ?>
         <li class="treeview <?=$this->uri->segment(1) == 'category' || $this->uri->segment(1) == 'unit' || $this->uri->segment(1) == 'item' ? 'active' : ''?>">
           <a href="#">
             <i class="fa fa-archive"></i> <span>Products</span>
@@ -135,20 +135,18 @@
             <li <?=$this->uri->segment(1) == 'item' ? 'class="active"' : ''?>><a href="<?=site_url('item')?>"><i class="fa fa-circle-o"></i> Item</a></li>
           </ul>
         </li>
-        <li class="treeview <?=$this->uri->segment(1) == '' || $this->uri->segment(1) == '' || $this->uri->segment(1) == '' ? 'active' : ''?>">
+        <li class="treeview <?=$this->uri->segment(1) == 'stock' || $this->uri->segment(1) == 'sale' ? 'active' : ''?>">
           <a href="#">
-            <i class="fa fa-cart-plus"></i> <span>Transaction</span>
+            <i class="fa fa-cubes"></i> <span>Stock Product</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li <?=$this->uri->segment(1) == '' ? 'class="active"' : ''?>><a href="<?=site_url('')?>"><i class="fa fa-circle-o"></i> Sales</a></li>
-            <li <?=$this->uri->segment(1) == '' ? 'class="active"' : ''?>><a href="<?=site_url('')?>"><i class="fa fa-circle-o"></i> Stock In</a></li>
-            <li <?=$this->uri->segment(1) == '' ? 'class="active"' : ''?>><a href="<?=site_url('')?>"><i class="fa fa-circle-o"></i> Stock Out</a></li>
+            <li <?=$this->uri->segment(1) == 'stock' && $this->uri->segment(2) == 'in' ? 'class="active"' : ''?>><a href="<?=site_url('stock/in')?>"><i class="fa fa-circle-o"></i> Stock In</a></li>
+            <li <?=$this->uri->segment(1) == 'stock' && $this->uri->segment(2) == 'out' ? 'class="active"' : ''?> ><a href="<?=site_url('stock/out')?>"><i class="fa fa-circle-o"></i> Stock Out</a></li>
           </ul>
         </li>
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Report</span></a></li>
         <li class="header">LABELS</li>
         <?php if($this->fungsi->user_login()->id_level == 1 ){ ?>
         <li <?=$this->uri->segment(1) == 'user' ? 'class="active"' : ''?>>
@@ -179,7 +177,7 @@
     <div class="pull-right hidden-xs">
       <b>Overtime</b> RST
     </div>
-    <strong>Copyright &copy; 2019-2020 <a href="https://adminlte.io">Ainun Nadifah</a>.</strong> SMK Negeri 1 Padaherang
+    <strong>Copyright &copy; 2020 <a href="https://web.facebook.com/profile.php?id=100010364105048">Ainun Nadifah</a>.</strong> SMK Negeri 1 Padaherang
   </footer>
 
   
